@@ -13,14 +13,14 @@ if (window.Telegram && window.Telegram.WebApp) {
 
 // Define the initial product data (fallback if localStorage is empty)
 const defaultProductsData = [
-    { id: '1', name: 'Пицца Пепперони', price: 120000, img: 'https://cdn-icons-png.flaticon.com/512/1046/1046757.png' },
-    { id: '2', name: 'Бургер Классический', price: 80000, img: 'https://cdn-icons-png.flaticon.com/512/878/878144.png' },
-    { id: '3', name: 'Салат Цезарь', price: 70000, img: 'https://cdn-icons-png.flaticon.com/512/621/621644.png' },
-    { id: '4', name: 'Картофель фри', price: 40000, img: 'https://cdn-icons-png.flaticon.com/512/2809/2809149.png' },
-    { id: '5', name: 'Кока-кола 1,5 литра', price: 26000, img: 'https://cdn-icons-png.flaticon.com/512/1042/1042337.png' },
-    { id: '6', name: 'Мороженое Ванильное', price: 45000, img: 'https://cdn-icons-png.flaticon.com/512/590/590744.png' },
-    { id: '7', name: 'Суши Сет "Филадельфия"', price: 250000, img: 'https://cdn-icons-png.flaticon.com/512/6362/6362624.png' },
-    { id: '8', name: 'Паста Карбонара', price: 100000, img: 'https://cdn-icons-png.flaticon.com/512/2552/2552528.png' }
+    { id: '1', name: 'Пицца-Шмицца', price: 98000, img: 'https://img.freepik.com/free-photo/delicious-pizza-studio_23-2151846547.jpg?semt=ais_hybrid&w=740' },
+    { id: '2', name: 'Бургер-Шмургер', price: 58000, img: 'https://img.freepik.com/free-photo/delicious-burger-studio_23-2151846495.jpg?semt=ais_hybrid&w=740' },
+    { id: '3', name: 'Салат-Малат', price: 19000, img: 'https://st.focusedcollection.com/11312302/i/650/focused_490211394-stock-photo-salad-fresh-vegetables-arugula-black.jpg' },
+    { id: '4', name: 'Картошка-Шмартошка', price: 18000, img: 'https://img.freepik.com/premium-photo/pile-french-fries-black-background_135427-8020.jpg' },
+    { id: '5', name: 'Кока-Шмола 0,5 литра', price: 9000, img: 'https://kartofan.ua/wp-content/uploads/2020/01/1-4-700x470.jpg' },
+    { id: '6', name: 'Лаваш-Шмаваш', price: 49000, img: 'https://abrakadabra.fun/uploads/posts/2022-01/1641155555_4-abrakadabra-fun-p-shaurma-na-temnom-fone-5.jpg' },
+    { id: '7', name: 'Сет "Суши-Муши"', price: 165000, img: 'https://thumbs.dreamstime.com/b/%D0%B2%D0%BA%D1%83%D1%81%D0%BD%D1%8B%D0%B5-%D1%80%D0%BE%D0%BB%D0%BB%D1%8B-%D0%B8-%D1%81%D1%83%D1%88%D0%B8-%D0%B8%D0%BD%D0%B3%D1%80%D0%B5%D0%B4%D0%B8%D0%B5%D0%BD%D1%82%D1%8B-%D0%BD%D0%B0-%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%87%D1%91%D1%80%D0%BD%D0%BE%D0%BC-174410898.jpg' },
+    { id: '8', name: 'Хотдог-Шмотдог', price: 25000, img: 'https://gagaru.club/uploads/posts/2023-02/1676671788_gagaru-club-p-khot-dog-solnechnii-instagram-87.jpg' }
 ];
 
 // Function to save products data to localStorage
