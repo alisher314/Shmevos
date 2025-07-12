@@ -1,0 +1,609 @@
+﻿body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff; /* Черный фон */
+    color: #f0f2f5; /* Светлый текст на черном фоне */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff; /* Белый фон контейнера */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Оригинальная тень */
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    border: none; /* Убираем зеленую рамку */
+}
+
+h1, h2 {
+    color: #1a1a1a; /* Оригинальный темный цвет для заголовков */
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* View management */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid #ccc; /* Оригинальная рамка */
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #ffffff; /* Белый фон для поля ввода */
+    color: #333; /* Оригинальный темный текст */
+}
+
+.file-upload-section, .add-product-section, .current-products-list {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0; /* Оригинальная рамка */
+    border-radius: 8px;
+    background-color: #fdfdfd; /* Оригинальный фон для секций */
+    text-align: center;
+    color: #333; /* Оригинальный темный текст */
+}
+
+.file-upload-section h2, .add-product-section h2, .current-products-list h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #1a1a1a; /* Оригинальный темный цвет для заголовков секций */
+}
+
+#excel-file-input {
+    display: block;
+    margin: 0 auto 15px auto;
+    padding: 5px;
+    border: 1px solid #ddd; /* Оригинальная рамка */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Оригинальный фон */
+    color: #333; /* Оригинальный темный текст */
+}
+
+#load-excel-btn, #add-product-manual-btn {
+    background-color: #007bff; /* Оригинальный синий */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+#load-excel-btn:hover, #add-product-manual-btn:hover {
+    background-color: #0056b3; /* Оригинальный синий при наведении */
+}
+
+#upload-status, #add-product-status {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666; /* Оригинальный серый для статусов */
+}
+
+.add-product-section input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Оригинальная рамка */
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #ffffff; /* Белый фон */
+    color: #333; /* Оригинальный темный текст */
+}
+
+.products, .cart {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0; /* Оригинальная рамка */
+    border-radius: 8px;
+    background-color: #fdfdfd; /* Оригинальный фон для секций */
+    color: #333; /* Оригинальный темный текст */
+}
+
+/* Изменения для вывода товаров плиткой */
+#products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #eee; /* Оригинальная рамка для карточки */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Оригинальная тень */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff; /* Белый фон карточки */
+    color: #333; /* Оригинальный темный текст */
+}
+
+.product-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: none; /* Убираем зеленую рамку для изображений */
+}
+
+.product-item span:first-of-type { /* Название продукта */
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #333; /* Оригинальный темный для названия */
+}
+
+.product-item span:nth-of-type(2) { /* Цена продукта */
+    color: #007bff; /* Оригинальный синий для цены */
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    background-color: #28a745; /* Оригинальный зеленый для кнопки "Добавить" */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: calc(100% - 20px);
+    max-width: 120px;
+}
+
+.add-to-cart:hover {
+    background-color: #218838; /* Оригинальный зеленый при наведении */
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e9ecef; /* Оригинальный пунктир */
+    color: #333; /* Оригинальный темный текст */
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item .item-details {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.cart-item .item-details span:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333; /* Оригинальный темный для названия товара в корзине */
+}
+
+.cart-item .item-inputs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+
+.cart-item .item-inputs label {
+    font-size: 0.9em;
+    color: #6c757d; /* Оригинальный серый для меток "Кол-во" и "Цена" */
+    margin-right: 5px;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+/* Styles for quantity controls (buttons + display) */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.quantity-btn {
+    background-color: #007bff; /* Оригинальный синий для кнопок + и - */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    min-width: 30px;
+    text-align: center;
+}
+
+.quantity-btn:hover {
+    background-color: #0056b3; /* Оригинальный синий при наведении */
+}
+
+.item-quantity-display, .item-price-display {
+    padding: 5px 10px;
+    border: 1px solid #ccc; /* Оригинальная рамка */
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    margin: 0 5px;
+    min-width: 40px;
+    background-color: #f8f9fa; /* Оригинальный фон для отображения */
+    color: #333; /* Оригинальный темный текст */
+    cursor: pointer;
+}
+
+.cart-item .item-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.remove-item {
+    background-color: #dc3545; /* Оригинальный красный для кнопки "Удалить" */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 0;
+}
+
+.remove-item:hover {
+    background-color: #c82333; /* Оригинальный красный при наведении */
+}
+
+.cart-placeholder {
+    text-align: center;
+    color: #6c757d; /* Оригинальный серый для текста "Корзина пуста" */
+    padding: 20px;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #e0e0e0; /* Оригинальная разделительная линия */
+    font-size: 1.2em;
+    color: #1a1a1a; /* Оригинальный темный для итоговой суммы */
+}
+
+.telegram-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #0088cc; /* Оригинальный синий для основной кнопки Telegram */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 30px;
+}
+
+.telegram-button:hover {
+    background-color: #006699;
+    transform: translateY(-2px);
+}
+
+.telegram-button:active {
+    transform: translateY(0);
+}
+
+.secondary-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #6c757d; /* Оригинальный серый для вторичных кнопок */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.secondary-button:active {
+    transform: translateY(0);
+}
+
+/* Styles for product list in management view */
+.manage-product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e9ecef; /* Оригинальный пунктир */
+    color: #333; /* Оригинальный темный текст */
+}
+
+.manage-product-item:last-child {
+    border-bottom: none;
+}
+
+.manage-product-item span {
+    flex-grow: 1;
+    color: #333; /* Оригинальный темный для названий продуктов в управлении */
+}
+
+.manage-product-item .delete-product-btn {
+    background-color: #dc3545; /* Оригинальный красный для кнопки "Удалить" */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.manage-product-item .delete-product-btn:hover {
+    background-color: #c82333;
+}
+
+.receipt-output {
+    background-color: #f8f9fa; /* Оригинальный светлый фон для чека */
+    border: 1px dashed #ced4da; /* Оригинальная пунктирная рамка */
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #343a40; /* Оригинальный темный текст для чека */
+}
+
+.receipt-output.hidden {
+    display: none;
+}
+
+/* Calculator Keyboard Styles */
+.calculator-keyboard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Оригинальный фон клавиатуры */
+    border-top: 1px solid #e0e0e0; /* Оригинальная верхняя граница */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+}
+
+.calculator-keyboard.hidden {
+    display: none;
+}
+
+.calculator-display {
+    width: calc(100% - 30px);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Оригинальная рамка */
+    border-radius: 8px;
+    font-size: 1.8em;
+    text-align: right;
+    background-color: #ffffff; /* Оригинальный фон дисплея */
+    color: #333; /* Оригинальный темный текст */
+    box-sizing: border-box;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.calc-button {
+    background-color: #e9ecef; /* Оригинальный фон для кнопок */
+    color: #333; /* Оригинальный темный текст для цифр */
+    border: none; /* Убираем синюю рамку */
+    padding: 20px 0;
+    border-radius: 8px;
+    font-size: 1.4em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc-button:hover {
+    background-color: #dee2e6;
+}
+
+.calc-button.clear-button {
+    background-color: #ffc107; /* Оригинальный желтый для Clear */
+    color: #333;
+}
+.calc-button.clear-button:hover {
+    background-color: #e0a800;
+}
+
+.calc-button.delete-button {
+    background-color: #dc3545; /* Оригинальный красный для Delete */
+    color: white;
+}
+.calc-button.delete-button:hover {
+    background-color: #c82333;
+}
+
+.calc-button.ok-button {
+    background-color: #28a745; /* Оригинальный зеленый для OK */
+    color: white;
+}
+.calc-button.ok-button:hover {
+    background-color: #218838;
+}
+
+.calc-button.zero-button {
+    grid-column: span 2;
+}
+
+.calc-button.price-adjust-button {
+    background-color: #6f42c1; /* Оригинальный фиолетовый для кнопок +500/-500 */
+    color: white;
+}
+.calc-button.price-adjust-button:hover {
+    background-color: #5a359d;
+}
+
+
+/* Адаптивный дизайн для мобильных устройств */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    /* Изменения для плиток на мобильных */
+    #products-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .product-item img {
+        height: 80px;
+    }
+
+    .product-item span:first-of-type {
+        font-size: 1em;
+    }
+
+    .product-item span:nth-of-type(2) {
+        font-size: 0.9em;
+    }
+
+    .add-to-cart {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+
+    .cart-item, .manage-product-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+
+    .product-item span:nth-child(2) {
+        margin: 5px 0;
+    }
+
+    .add-to-cart {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .cart-item .item-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .cart-item .item-inputs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item .item-inputs label {
+        margin-bottom: 5px;
+    }
+
+    .quantity-controls {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .quantity-btn, .remove-item, .manage-product-item .delete-product-btn {
+        padding: 8px 12px;
+    }
+
+    .add-product-section input {
+        width: 100%;
+    }
+
+    #load-excel-btn, #add-product-manual-btn {
+        width: 100%;
+    }
+
+    .calculator-keyboard {
+        padding: 10px;
+    }
+
+    .calculator-display {
+        font-size: 1.5em;
+        padding: 10px;
+    }
+
+    .calc-button {
+        padding: 15px 0;
+        font-size: 1.2em;
+    }
+}
